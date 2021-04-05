@@ -5,9 +5,12 @@
 int** criaMatriz(int vertices);
 int* criarVetor(int vertices);
 int* criarVetorInfinito(int vertices);
+
 void leiaMatriz(int**matriz, int vertices);
+
 void percorrer(int**matriz, int*distancia_atual, int*vertices_fechado, int*predecessor, int vertices, int inicio, int valor_aresta);
 void printar_resultado(int **matriz, int *distancia_atual, int *predecessor, int vertices, int destino, int inicio);
+
 void Liberar(int**mat, int*distancia_atual, int*vertices_fechado, int*predecessor, int vertices);
 
 int main (){
@@ -16,8 +19,7 @@ int main (){
     // vetores de controle
     int *vertices_fechado, *predecessor;
     // variaveis de controle
-    int vertices, inicio, destino , maior_valor=0;
-
+    int vertices, inicio, destino;
 
     do{
         printf("Digite a quantidade de vertices: ");
@@ -31,13 +33,15 @@ int main (){
 
     leiaMatriz(matriz, vertices);
 
-    printf("Digite o vertice de origem, vertices(0 ate %d): ", vertices-1);
-    scanf("%d", &inicio);
+    do{
+        printf("Digite o vertice de origem, vertices(0 ate %d): ", vertices-1);
+        scanf("%d", &inicio);
+    }while(inicio < 0 || inicio > vertices);
 
     do{
         printf("Digite o vertice de destino, vertices(0 ate %d): ", vertices-1);
         scanf("%d", &destino);
-    }while(inicio == destino);
+    }while(inicio == destino || destino > vertices || destino < 0);
 
     //como já vou estar no vértice inicial, sua estimativa é 0
     percorrer(matriz, distancia_atual, vertices_fechado, predecessor, vertices, inicio, 0);
@@ -50,7 +54,6 @@ int main (){
     
     getchar();
     return 0;
-
 }
 
 void percorrer(int**matriz, int*distancia_atual, int*vertices_fechado, int*predecessor, int vertices, int inicio, int valor_aresta){
@@ -118,7 +121,7 @@ void percorrer(int**matriz, int*distancia_atual, int*vertices_fechado, int*prede
 
 void printar_resultado(int **matriz, int *distancia_atual, int *predecessor, int vertices, int destino, int inicio){
     if(destino !=0){
-    printf("Vertice %d ->", destino);
+        printf("Vertice %d ->", destino);
     }else{
         //cai nesse if só para não printar a "flecha" no último valor
     printf("Vertice %d", destino);        
@@ -178,6 +181,7 @@ int*  criarVetorInfinito(int vertices){
     }
 
     for(i=0;i < vertices;i++){
+        //cria com as estimativas +infinito
         vetor[i] = INT_MAX/2;
     }
 
@@ -189,25 +193,26 @@ void leiaMatriz(int**matriz, int vertices){
     printf("-----------------Digite zero para nao ter a aresta!!!!!\n");
 
     for(linha=0;linha < vertices; linha++){
-    for(coluna=0;coluna < vertices; coluna++){
+        for(coluna=0;coluna < vertices; coluna++){
 
-        printf("-----------------Vertice: %d\n", linha);
-        do{
-            printf("Digite um valor da aresta %d: ", coluna);
-            scanf("%d",&matriz[linha][coluna]);
+            printf("-----------------Vertice: %d\n", linha);
+            do{
 
-        }while( matriz[linha][coluna] < 0 );
+                printf("Digite um valor da aresta %d: ", coluna);
+                scanf("%d",&matriz[linha][coluna]);
 
+            }while( matriz[linha][coluna] < 0 );
+        }
     }
-    }
-
 }
 
 void Liberar(int**mat, int*distancia_atual, int*vertices_fechado, int*predecessor, int vertices){
     int i;
+
     for(i=0;i < (vertices);i++){
         free(mat[i]);
     }
+
     free(mat);
     
     for(i=vertices; i> 0;i--){
@@ -216,8 +221,8 @@ void Liberar(int**mat, int*distancia_atual, int*vertices_fechado, int*predecesso
         free(vertices_fechado[i]);
     }
 
-        free(distancia_atual);
-        free(vertices_fechado);
-        free(vertices_fechado);
+    free(distancia_atual);
+    free(vertices_fechado);
+    free(vertices_fechado);
 
 }
