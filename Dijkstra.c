@@ -46,7 +46,7 @@ int main (){
     //como já vou estar no vértice inicial, sua estimativa é 0
     percorrer(matriz, distancia_atual, vertices_fechado, predecessor, vertices, inicio, 0);
 
-    printf("\nCaminho:(origem)");
+    printf("\nCaminho: (origem)");
 
     printar_resultado(matriz, distancia_atual, predecessor, vertices, destino, inicio);
     printf("(destino)V%d", destino);
