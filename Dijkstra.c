@@ -46,9 +46,10 @@ int main (){
     //como já vou estar no vértice inicial, sua estimativa é 0
     percorrer(matriz, distancia_atual, vertices_fechado, predecessor, vertices, inicio, 0);
 
-    printf("\nCaminho:");
+    printf("\nCaminho:(origem)");
 
     printar_resultado(matriz, distancia_atual, predecessor, vertices, destino, inicio);
+    printf("(destino)V%d", destino);
 
     Liberar(matriz, distancia_atual, vertices_fechado, predecessor, vertices);
     
@@ -120,19 +121,21 @@ void percorrer(int**matriz, int*distancia_atual, int*vertices_fechado, int*prede
 }//fim da função
 
 void printar_resultado(int **matriz, int *distancia_atual, int *predecessor, int vertices, int destino, int inicio){
-    
-    if(destino !=0){
-        printf("Vertice %d ->", destino);
-    }else{
-        //cai nesse if só para não printar a "flecha" no último valor
-        printf("Vertice %d", destino);        
-    }
+    int aux;
 
+    aux = destino;
 
-    if(destino !=0){
+    destino =  predecessor[destino];
+
+    if(destino != inicio){
                                                                           //chama a função para o predecessor do vertice destino
-        printar_resultado(matriz, distancia_atual, predecessor, vertices, predecessor[destino], inicio);    
+        printar_resultado(matriz, distancia_atual, predecessor, vertices, destino, inicio);    
     }
+
+    if(aux != inicio){
+        printf("V%d -> ", destino);
+    }
+
 }
 
 int** criaMatriz(int vertices){
