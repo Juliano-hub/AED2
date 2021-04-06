@@ -14,10 +14,10 @@ void printar_resultado(int **matriz, int *distancia_atual, int *predecessor, int
 void Liberar(int**mat, int*distancia_atual, int*vertices_fechado, int*predecessor, int vertices);
 
 int main (){
-    // matrizes 
-    int **matriz,*distancia_atual;
+    // matriz
+    int **matriz;
     // vetores de controle
-    int *vertices_fechado, *predecessor;
+    int *vertices_fechado, *predecessor, *distancia_atual;
     // variaveis de controle
     int vertices, inicio, destino;
 
@@ -120,11 +120,12 @@ void percorrer(int**matriz, int*distancia_atual, int*vertices_fechado, int*prede
 }//fim da função
 
 void printar_resultado(int **matriz, int *distancia_atual, int *predecessor, int vertices, int destino, int inicio){
+    
     if(destino !=0){
         printf("Vertice %d ->", destino);
     }else{
         //cai nesse if só para não printar a "flecha" no último valor
-    printf("Vertice %d", destino);        
+        printf("Vertice %d", destino);        
     }
 
 
