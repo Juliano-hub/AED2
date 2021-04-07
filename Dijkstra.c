@@ -222,11 +222,11 @@ void Liberar(int**mat, int*distancia_atual, int*vertices_fechado, int*predecesso
     for(i=vertices; i> 0;i--){
         free(distancia_atual[i]);
         free(vertices_fechado[i]);
-        free(vertices_fechado[i]);
+        free(predecessor[i]);
     }
 
     free(distancia_atual);
     free(vertices_fechado);
-    free(vertices_fechado);
+    free(predecessor);
 
 }
