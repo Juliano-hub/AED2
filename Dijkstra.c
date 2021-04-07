@@ -24,7 +24,7 @@ int main (){
     do{
         printf("Digite a quantidade de vertices: ");
         scanf("%d", &vertices);
-    }while(vertices < 0 && vertices > 20);
+    }while(vertices < 0 || vertices > 20);
 
     matriz =  criaMatriz(vertices);
     distancia_atual = criarVetorInfinito(vertices); 
