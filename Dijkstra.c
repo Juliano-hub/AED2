@@ -133,7 +133,7 @@ void printar_resultado(int **matriz, int *distancia_atual, int *predecessor, int
     }
 
     if(aux != inicio){
-        printf("V%d -> ", destino);
+        printf("V%d (valor: %d) -> ", destino, distancia_atual[aux]);
     }
 
 }
