@@ -52,7 +52,7 @@ int main (){
     printf("(destino)V%d", destino);
 
     Liberar(matriz, distancia_atual, vertices_fechado, predecessor, vertices);
-    
+
     getchar();
     return 0;
 }
@@ -95,7 +95,7 @@ void percorrer(int**matriz, int*distancia_atual, int*vertices_fechado, int*prede
         if(resultado != vertices){
 
             //uso isso só porque o primeiro valor é 0, assim eu posso procurar pela matriz para ver qual é a menor aresta
-            menor_estimativa = INT_MAX;
+            menor_estimativa = INT_MAX/2;
 
             for(i=0; i<vertices; i++){
                 if(distancia_atual[i] < menor_estimativa && (distancia_atual[i] != 0) && (vertices_fechado[i] == 0) ){
@@ -153,7 +153,7 @@ int** criaMatriz(int vertices){
     for(i=0;i < vertices;i++){
         matriz[i] = (int *)malloc((vertices)*sizeof(int));
     }
-    
+
     return (int**) matriz;
 }
 
@@ -186,7 +186,7 @@ int*  criarVetorInfinito(int vertices){
 
     for(i=0;i < vertices;i++){
         //cria com as estimativas +infinito
-        vetor[i] = INT_MAX;
+        vetor[i] = INT_MAX/2;
     }
 
     return (int*) vetor;
@@ -246,9 +246,9 @@ void Liberar(int**mat, int*distancia_atual, int*vertices_fechado, int*predecesso
     free(mat);
     
     for(i=vertices; i> 0;i--){
-        free(distancia_atual[i]);
-        free(vertices_fechado[i]);
-        free(predecessor[i]);
+        free((int *)distancia_atual[i]);
+        free((int *)vertices_fechado[i]);
+        free((int *)predecessor[i]);
     }
 
     free(distancia_atual);
