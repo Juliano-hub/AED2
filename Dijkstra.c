@@ -95,7 +95,7 @@ void percorrer(int**matriz, int*distancia_atual, int*vertices_fechado, int*prede
         if(resultado != vertices){
 
             //uso isso só porque o primeiro valor é 0, assim eu posso procurar pela matriz para ver qual é a menor aresta
-            menor_estimativa = INT_MAX;
+            menor_estimativa = INT_MAX/2;
 
             for(i=0; i<vertices; i++){
                 if(distancia_atual[i] < menor_estimativa && (distancia_atual[i] != 0) && (vertices_fechado[i] == 0) ){
@@ -186,7 +186,7 @@ int*  criarVetorInfinito(int vertices){
 
     for(i=0;i < vertices;i++){
         //cria com as estimativas +infinito
-        vetor[i] = INT_MAX;
+        vetor[i] = INT_MAX/2;
     }
 
     return (int*) vetor;
