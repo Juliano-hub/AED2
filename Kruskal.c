@@ -67,7 +67,7 @@ int main (){
 void printar_resultado(Aresta *MST, int Total_Vertices){
     int i;
 
-    printf("Professor, coloquei para o programa iniciar com mesmo grafo do ultimo video\n");
+    printf("Professor, coloquei para o programa iniciar com mesmo grafo do ultimo video, para facilitar a desenvolver o algoritmo e nao precisar colocar sempre uma entrada\n");
     printf("\na = 0, b = 1, c = 2, d = 3, e = 4, f = 5, g = 6, h = 7, i = 8");
     printf("\n-----As arestas resultantes sao:\n");
     for(i=0; i< Total_Vertices - 1; i++){
