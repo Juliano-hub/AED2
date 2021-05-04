@@ -60,6 +60,7 @@ int main (){
 
     free(Grafo);
     free(MST);
+    free(Conjunto);
 
     return 0;
 }
